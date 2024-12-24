@@ -1,5 +1,7 @@
 package helpers;
 
+import io.qameta.allure.Allure;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -22,11 +24,12 @@ public class PropertiesTest {
     public void readFromConf(){
         String urlFromConf = ConfigProvider.URL;
         System.out.println(urlFromConf);
-        if(ConfigProvider.readConfig().getBoolean("usersParams.admin.isAdmin")){
-            System.out.println("User has admin permission");
-        }
-        else {
-            System.out.println("User has no permission");
-        }
+        Allure.step("Check admin permission", () -> Assertions.assertTrue(ConfigProvider.readConfig().getBoolean("usersParams.admin.isAdmin")));
+//        if(ConfigProvider.readConfig().getBoolean("usersParams.admin.isAdmin")){
+//            System.out.println("User has admin permission");
+//        }
+//        else {
+//            System.out.println("User has no permission");
+//        }
     }
 }

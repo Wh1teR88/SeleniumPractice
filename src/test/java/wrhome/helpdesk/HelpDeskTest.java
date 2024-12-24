@@ -1,6 +1,7 @@
 package wrhome.helpdesk;
 
 import helpers.TestValues;
+import io.qameta.allure.Allure;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import wrhome.core.BaseSeleniumTest;
@@ -21,9 +22,9 @@ public class HelpDeskTest extends BaseSeleniumTest {
                 .openLoginPage()
                 .auth(TestValues.TEST_LOGIN, TestValues.TEST_PASSWORD)
                 .findTicket(title);
-        assertTrue(ticketPage.getTitle().contains(title));
-        assertEquals(ticketPage.getBody(), TestValues.TEST_BODY);
-        assertEquals(ticketPage.getEmail(), TestValues.TEST_EMAIL);
+        Allure.step("Check title", () -> assertTrue(ticketPage.getTitle().contains(title)));
+        Allure.step("Check body", () -> assertEquals(ticketPage.getBody(), TestValues.TEST_BODY));
+        Allure.step("Check email", () -> assertEquals(ticketPage.getEmail(), TestValues.TEST_EMAIL));
 
 //        System.out.println(ticketPage.getTitle().contains(title));
 //        System.out.println(ticketPage.getBody().equals(TestValues.TEST_BODY));
